@@ -1,0 +1,69 @@
+<include file="public:header" />
+<!--内容页开始-->
+
+<div class="main_content">
+    <!--主部开始-->
+    <div id="main">
+        <div class="contentbox clearfix menber-area"> <include file="menu" />
+            <div class="menber-right">
+                <div class="menber-right-title">我的地址</div>
+                <div class="main-content">
+                    <empty name="address_list">
+                        <!--<div class="tips">抱歉，没有更多数据</div>-->
+                        <else/>
+                        <table style="width: 100%;" cellpadding="5" cellspacing="0" class="table_baoliao">
+                            <tr>
+                                <th>{:L('consignee')}</th>
+                                <th>{:L('mobile')}</th>
+                                <th>{:L('address')}</th>
+                                <th>{:L('zip')}</th>
+                                <th>{:L('operations_manage')}</th>
+                            </tr>
+                            <volist name="address_list" id="val">
+                                <tr>
+                                    <td align="center">{$val.consignee}</td>
+                                    <td align="center">{$val.mobile}</td>
+                                    <td>{$val.address}</td>
+                                    <td align="center">{$val.zip}</td>
+                                    <td align="center">
+                                        <a href="{:U('user/address', array('id'=>$val['id']))}" class="green">{:L('edit')}</a>
+                                        <span class="green">|</span>
+                                        <a href="{:U('user/address', array('id'=>$val['id'], 'type'=>'del'))}" class="green">{:L('delete')}</a>
+                                    </td>
+                                </tr>
+                            </volist>
+                        </table>
+                    </empty>
+                    <div class="blank15"></div>
+                    <div class="page">{$page}</div>
+                    <div class="set-info">
+                        <form id="J_address_form" action="{:U('user/address')}" method="post">
+                            <div class="form-row">
+                                <label>{:L('consignee')}：</label>
+                                <input type="text" id="J_consignee" name="consignee" class="base-input" value="{$info.consignee}"/>
+                            </div>
+                            <div class="form-row">
+                                <label>{:L('address')}：</label>
+                                <input type="text" id="J_address" name="address" class="base-input" value="{$info.address}"/>
+                            </div>
+                            <div class="form-row">
+                                <label>{:L('zip')}：</label>
+                                <input type="text" name="zip" class="base-input" value="{$info.zip}"/>
+                            </div>
+                            <div class="form-row">
+                                <label>{:L('mobile')}：</label>
+                                <input type="text" name="mobile" class="base-input" value="{$info.mobile}"/>
+                            </div>
+                            <div class="form-row pt10">
+                                <label>&nbsp;<input type="hidden" name="id" value="{$info.id}"></label>
+                                <input type="submit" value="保存" class="bbl-btn submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--主部结束-->
+</div>
+<include file="public:footer" />

@@ -1,0 +1,39 @@
+<include file="public:header" />
+<!--内容页开始-->
+
+<div class="main_content">
+    <!--主部开始-->
+    <div id="main">
+        <div class="contentbox clearfix menber-area"> <include file="menu" />
+            <div class="menber-right">
+                <div class="menber-right-title">我的团购</div>
+                <div class="main-content">
+                    <empty name="list">
+                        <div class="tips">抱歉，没有更多数据</div>
+                        <else/>
+                        <table style="width: 100%;" cellpadding="5" cellspacing="0" class="table_baoliao">
+                            <tr>
+                                <th width="140">商品名称</th>
+                                <th>暗号</th>
+                                <th width="130">领取时间</th>
+                                <th width="60">状态</th>
+                            </tr>
+                            <volist name="list" id="v">
+                                <tr>
+                                    <td align="center">{$v.item.title}</td>
+                                    <td>{$v.key}</td>
+                                    <td align="center">{$v.add_time|date='Y-m-d H:i:s',###}</td>
+                                    <td align="center"><if condition="$v['status'] eq 1"><span class="green">已使用</span><else/>未使用</if></td>
+                                </tr>
+                            </volist>
+                        </table>
+                    </empty>
+                    <div class="blank15"></div>
+                    <div class="page">{$page_bar}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--主部结束-->
+</div>
+<include file="public:footer" />

@@ -1,0 +1,145 @@
+<include file="public:header"/>
+<div class="main_content">
+    <div id="main">
+        <!--积分广告和积分 登录开始-->
+        <div class="pointsad-pointslog clearfix">
+            <div class="pointsad fl">
+                {:R('advert/index', array(22), 'Widget')}
+            </div>
+            <div class="points-border fl">
+            </div>
+            <div class="w250 fr">
+                <!--积分 登录开始-->
+                <div class="pointslog">
+                    <if condition="empty($visitor)">
+                        <div class="pointslog-head clearfix">
+                            <div class="pointslog-head-left fl">
+                                <a href="{:U('user/register')}">
+                                    免费注册
+                                </a>
+                            </div>
+                            <div class="pointslog-head-right fr">
+                                <div class="title">登录方式</div>
+                                <ul class="clearfix">
+                                    <volist name="oauth_list" id="val">
+                                    <li class="{$val.code}" style="background-image: url('static/images/oauth/{$val.code}/icon.png');">
+                                        <a href="{:u('oauth/index',array('mod'=>$val['code']))}">
+                                        </a>
+                                    </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pointslog-body">
+                            <p>欢迎来到值得买积分商城，登陆后可查看您的个 人积分信息。</p>
+                        </div>
+                        <else/>
+                        <!--登录后 开始-->
+                        
+                        <div class="logged mt20 clearfix">
+                            <a class="avatar fl" href="">
+                                <img src="{:avatar($visitor['id'], 100)}">
+                            </a>
+                            <div class="logged-text fr">
+                                <p class="mb10">
+                                    <a class="f14" href="{:U('user/index')}">
+                                        <b>{$visitor.username}</b>
+                                    </a>
+                                </p>
+                                <p>
+                                    <span>我的积分：
+                                        <a class="pink" href="{:U('user/score_log')}">
+                                            {$visitor.score}
+                                        </a>
+                                        分</span>
+                                </p>
+                            </div>
+                        </div>
+                        <!--登录后 结束-->
+                    </if>
+                    <div class="pointslog-foot">
+                        <dl class="clearfix">
+                            <dt class="fl">
+                                <a href="javascript:;" class="J_qiandao">
+                                    签到得积分
+                                </a>
+                            </dt>
+                            <dd class="fl">
+                                <a href="{:U('help/page',array('id'=>6))}">
+                                    获得更多积分？
+                                </a>
+                                <a href="{:U('help/page', array('id'=>6))}">
+                                    积分明细
+                                </a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <!--积分 登录结束-->
+            </div>
+        </div>
+        <!--积分广告和积分 登录结束-->
+        <!--积分兑换商品开始-->
+        <div class="pointsgood mt20">
+            <div class="pointsgood-head">
+                <ul class="clearfix">
+                    <li
+    
+                    <if condition="$cid eq 0"> class="current"</if>
+                    >
+                    <a class="icon1" href="{:U('exchange/index')}">
+                        <i></i><br>
+                        <span>热门兑换</span>
+                    </a>
+                    </li>
+                    <pin:scoreitem type="cate" return="cate_list">
+                        <volist name="cate_list" id="cate">
+                            <li
+            
+                            <if condition="$cid eq $cate['id']" >class="current"</if>
+                            >
+                            <a class="icon{$i+1}" href="{:U ('exchange/index',array('cid'=>$cate['id']))}">
+                                <i></i><br>
+                                <span> {$cate.name} </span>
+                            </a>
+                            </a>
+                            </li>
+                        </volist>
+                    </pin:scoreitem>
+                </ul>
+            </div>
+            <div class="pointsgood-body pb30">
+                <ul class="clearfix">
+                    <volist name="item_list" id="item">
+                        <li>
+                            <div class="convertgood">
+                                <a class="convertgood-pic" href="{:U('exchange/detail', array('id'=>$item['id']))}">
+                                    <img src="{$item._img}">
+                                </a>
+                                <dl class="convertgood-desc">
+                                    <dd>
+                                        <h3>{$item.title}</h3>
+                                        <p>剩余：<b class="green"> {$item.stock}</b> 份</p>
+                                        <p>需积分：<b class="pink"> {$item.score}</b></p>
+                                    </dd>
+                                    <dt>
+                                        <a href="{:U('exchange/detail', array('id'=>$item['id']))}">
+                                            我要换
+                                        </a>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </li>
+                    </volist>
+                </ul>
+                <!--分页开始-->
+                <div class="page tc clearfix">
+                    {$page_bar}
+                </div>
+                <!--分页结束-->
+            </div>
+        </div>
+        <!--积分兑换商品结束-->
+    </div>
+</div>
+<include file="public:footer"/>

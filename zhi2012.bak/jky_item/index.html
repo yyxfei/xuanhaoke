@@ -1,0 +1,94 @@
+<include file="public:header" />
+<style type="text/css">
+#header{
+    margin: 0px;
+}
+</style>
+<load href="__ASSETS__/css/jiukuaiyou.css"/>
+<!--内容页开始-->
+<div class="main_content">
+    <!--主部开始-->
+    <div id="main">
+        <div class="contentbox clearfix">         
+            <div class="contentbox_l fl">
+                <div class="jky_cate">
+                    <div class="level_1 clearfix">
+                        <a href="{:u(MODULE_NAME.'/index')}" <if condition="$c1 eq 0">class="hover"</if>>全部<i></i></a>
+                        <volist name="type_list" id="v">
+                        <a href="{:U(MODULE_NAME.'/index',array('c1'=>$v['id'],'c2'=>$c2))}" <if condition="$c1 eq $v['id']">class="hover"</if>>{$v.name}<i></i></a>
+                        </volist>
+                    </div>
+                       <div id="rig_ht" class="level_1 clearfix">
+                        <div class="fl">
+                            <a href="{:U(MODULE_NAME.'/'.ACTION_NAME,array('state'=>'notstart','c2'=>$c2,'c1'=>$c1))}"
+                            style="background-color:#ff7a0f;color:#ffffff;position: static;">明日预告</a>
+                        </div>
+                        <div id="click_show" class="fl">
+                            <if condition="$text neq ''">
+                            <span style="color:#ff7a0f">{$text}</span>
+                            <else/>
+                            状态
+                            </if>
+                            <div class="content">
+                                <ul>
+                                <li><a href="{:U(MODULE_NAME.'/'.ACTION_NAME,array('state'=>'all','c2'=>$c2,'c1'=>$c1))}">全部</a></li>
+                                <li><a href="{:U(MODULE_NAME.'/'.ACTION_NAME,array('state'=>'underway','c2'=>$c2,'c1'=>$c1))}">进行中</a></li>
+                                <li><a href="{:U(MODULE_NAME.'/'.ACTION_NAME,array('state'=>'end','c2'=>$c2,'c1'=>$c1))}">抢光了</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                      </div>
+                    <div class="level_2">
+                        <span class="fl">筛选:</span>
+                        <a href="{:U(MODULE_NAME.'/'.ACTION_NAME,array('c1'=>$c1,'c2'=>0))}" <if condition="$c2 eq 0"> class="hover"</if>>所有</a>
+                        <volist name="cat_list" id="v">
+                        <a href="{:U(MODULE_NAME.'/'.ACTION_NAME,array('c1'=>$c1,'c2'=>$v['id']))}" <if condition="$c2 eq $v['id']"> class="hover"</if>>{$v.name}</a>
+                        </volist>                
+                    </div>                                  
+                </div>   
+                
+                <div class="showinfo clearfix" id="item_body">
+                    <ul class="clearfix">
+                    <volist name="list" id="val">
+                        <div class="jky_item <if condition='$i%3 eq 0'> </if> tag_{$val.state}" >
+                            <h3>
+                                <if condition="$val['orig']['img']">
+                                    <img class="orig" title="{$val.orig.name}" src="{$val.orig._img},'jky_orig')}"/>
+                                </if>
+                                <a class="inform_title" href="{$val._detail_url}" target="_blank">
+                                    <i <if condition="$val['is_duxiang']">class="tao-d"</if> title="{$val.title}"></i>{$val.title}
+                                </a>
+                            </h3>
+                            <div class="pic">
+                                <a href="{$val._detail_url}" target="_blank">
+                                    <img class="img" alt="{$val.title}" src="{$val._img}"/>
+                                </a>
+                            </div>
+                            <div class="buy_mask"></div>
+                            <div class="buy_state clearfix">
+                                <span class="begin_time">
+                                    开始：{:date("m月d日H时i分",$val['stime'])}
+                                </span>
+                            </div>
+                            <div class="buy_content">
+                                <a target="_blank" href="{$val.url}" rel="nofollow" class="buy_action clearfix">
+                                    <span class="price"><em>￥</em>{$val['price']}
+                                    </span>
+                                    <span class="oldprice_1">￥{$val.mprice}</span>
+                                    <b class="btn"></b>
+                                </a>
+                            </div>
+                        </div>
+                    </volist>
+                    </ul>
+                </div>
+                <div class="page tc clearfix">{$page}</div>
+            </div>
+            <div class="contentbox_r fr mt10">
+                <include file="right" />
+            </div>
+        </div>
+    </div>
+    <!--主部结束-->
+</div>	
+<include file="public:footer" />

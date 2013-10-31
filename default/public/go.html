@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>跳转中……{:C('pin_site_name')}</title>
+{:C('pin_head_meta')} 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<load href="__STATIC__/js/jquery/jquery.js" />
+<load href="__ASSETS__/css/base.css" />
+<load href="__ASSETS__/css/style.css" />
+<load href="__ASSETS__/js/common.js" />
+<load href="__STATIC__/js/common.js" />
+<load href="__STATIC__/js/jquery/plugins/jquery.cookie.js" />     
+<script src="__ROOT__/index.php?m={:MODULE_NAME}&a={:ACTION_NAME}&act=loadjs"></script>  
+<style type="text/css">
+.dlogin_form td{
+    padding-top: 10px !important;
+}
+.dlogin_form th{
+    font-weight: normal;
+}
+.d-mask {
+    background: #000;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}    
+.tip{
+    height: 37px;
+    border-top: 1px dotted #d2cd68;
+    background: #fefef3;
+    text-align: right;
+    line-height: 37px;
+    padding: 0 20px;
+}
+#go_url{
+    font-size: 20px;
+    display: block;
+    width: 500px;
+    text-align: center;
+    margin:0px auto;
+    margin-top: 200px;
+}
+</style>
+</head>
+<body> 
+<a href="{$url}" id="go_url">长时间没有跳转，请点击此处……</a>
+
+<div id="login_wrap" style="display: none;">
+    <div id="lb_login">
+        <div class="login_box clearfix">
+            <form id="J_dlogin_form" action="{:U('user/login')}" method="post">
+                <p id="J_login_fail" class="login_fail imgcheckclear">{:L('username_require')}</p>
+                <div class="dlogin_form">
+                    <table cellspacing="5" cellpadding="5">
+                        <tr>
+                            <th>用户名：</th>
+                            <td><input type="text" name="username" class="J_username text"/></td>
+                        </tr>
+                        <tr>
+                            <th>密　码：</th>
+                            <td>
+                                <input type="password" name="password" class="J_password text"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="checkbox" name="remember" class="checkbox" checked="">
+                                两周内免登录
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="submit" value="" class="login_btn"/>
+                                <a href="{:U('user/register')}" class="register_btn"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                            <a href="javascript:;" style="font-size: 14px;font-family: '宋体';color: black;line-height: 30px;">不登录直接前往>></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="reg_or_weibo">
+                    <div class="register_box">其他登陆方式<a href="{:U('oauth/index', array('mod'=>'qq'))}" class="login_a"></a></div>
+                    <div class="l_o">
+                        <a href="{:U('oauth/index', array('mod'=>'sina'))}">用微博帐号登录</a>
+                        <a style="background-position: 0 -51px;" href="{:U('oauth/index', array('mod'=>'taobao'))}">用淘宝帐号登录</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="clearfix tip">
+            <input type="checkbox" onclick="$.cookie('not_show_go_login',$(this).attr('checked')=='checked');"/>	不再弹出此提示
+        </div>
+    </div>
+</div>   
+<script>
+var PINER = {
+    root: "__ROOT__",
+    uid: "<?php echo $visitor['id'];?>", 
+    async_sendmail: "<?php echo $async_sendmail;?>",
+    config: {
+        wall_distance: "<?php echo C('pin_wall_distance');?>",
+        wall_spage_max: "<?php echo C('pin_wall_spage_max');?>"
+    },
+    //URL
+    url: {}
+};
+//语言项目
+var lang = {};
+<volist name=":L('js_lang')" id="val">lang.{$key} = "{$val}";</volist>
+
+$(function(){
+    function trigger_go(){
+        var url_info=parse_url($('#go_url').attr('href'));
+        if(in_array(url_info.host,['detail.tmall.com','item.taobao.com'])){
+            $('#go_url').text('这个是淘宝、天猫商品，请点击此处……');
+            return;
+        }
+        var ie=navigator.appName=='Microsoft Internet Explorer'? true : false; 
+        if(ie){
+            document.getElementById('go_url').click();  
+        } 
+        else{ 
+            var a=document.createEvent('MouseEvents'); 
+            a.initEvent('click', true, true);  
+            document.getElementById('go_url').dispatchEvent(a); 
+        } 
+    }
+    
+    if(empty(PINER.uid)&&$.cookie('not_show_go_login')!='true'){        
+        $.dialog({id:'login', 
+            title:lang.login_title, 
+            content:$('#login_wrap').html(), 
+            padding:'', 
+            fixed:true, 
+            lock:true,
+            beforeunload:function(){
+                trigger_go();    
+            }
+        });
+        $('#J_dlogin_form').ajaxForm({
+            beforeSubmit: function(){
+                var username = $('#J_dlogin_form').find('.J_username').val(),
+                    password = $('#J_dlogin_form').find('.J_password').val();
+                if(username == ''){
+                    $('#J_dlogin_form').find('#J_login_fail').html('请输入用户名！').css("visibility", 'visible');
+                    return !1;
+                }
+                if(password == ''){
+                    $('#J_dlogin_form').find('#J_login_fail').html('请输入密码！').css("visibility", 'visible');
+                    return !1;
+                }
+            },
+            success: function(result){
+                if(result.status == 1){
+                    $.dialog.get('login').title(false).content('<div class="d_loading">'+result.msg+'</div>').time(2000);
+                    window.location.reload();
+                } else {
+                    $('#J_dlogin_form').find('#J_login_fail').html(result.msg).css("visibility", 'visible');
+                }
+            },
+            dataType: 'json'
+        });   
+    }else{
+        trigger_go();
+    }
+});
+</script>
+
+<pin:load type="js" href="__STATIC__/js/jquery/plugins/jquery.artDialog.js
+,__STATIC__/js/jquery/plugins/artDialog.plugins.js
+,__STATIC__/js/zhiphp.js
+,__STATIC__/js/front.js
+" />
+<!--[if lte IE 6]>
+<script src="__STATIC__/js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('div, ul, img, li, input , a,h3,span,em,i,dt,dd,button');
+    </script>
+<![endif]-->    
+</body>
+</html>

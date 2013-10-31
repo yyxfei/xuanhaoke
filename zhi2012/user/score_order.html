@@ -1,0 +1,41 @@
+<include file="public:header" />
+<!--内容页开始-->
+
+<div class="main_content">
+    <!--主部开始-->
+    <div id="main">
+        <div class="contentbox clearfix menber-area"> <include file="menu" />
+            <div class="menber-right">
+                <div class="menber-right-title">积分订单</div>
+                <div class="main-content">
+                    <empty name="order_list">
+                        <div class="tips">抱歉，没有更多数据</div>
+                        <else/>
+                        <table style="width: 100%;" cellpadding="5" cellspacing="0" class="table_baoliao">
+                            <tr>
+                                <th width="140">{:L('order_sn')}</th>
+                                <th>{:L('order_item')}</th>
+                                <th width="60" align="right">{:L('order_score')}</th>
+                                <th width="130">{:L('order_time')}</th>
+                                <th width="60">{:L('order_status')}</th>
+                            </tr>
+                            <volist name="order_list" id="val">
+                                <tr>
+                                    <td align="center">{$val.order_sn}</td>
+                                    <td><a href="{:U('exchange/detail', array('id'=>$val['item_id']))}" target="_blank">{$val.item_name}</a></td>
+                                    <td align="right"><if condition="$val['order_score'] gt 0"><span class="income bold">{$val.order_score}</span><else/><span class="outlay bold">{$val.order_score}</span></if></td>
+                                    <td align="center">{$val.add_time|date='Y-m-d H:i:s',###}</td>
+                                    <td align="center"><if condition="$val['status'] eq 1"><span class="green">{:L('order_status_1')}</span><else/>{:L('order_status_0')}</if></td>
+                                </tr>
+                            </volist>
+                        </table>
+                    </empty>
+                    <div class="blank15"></div>
+                    <div class="page">{$page_bar}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--主部结束-->
+</div>
+<include file="public:footer" />

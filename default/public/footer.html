@@ -1,0 +1,103 @@
+	<div class="main_content">
+        <div id="main">
+            {:R('advert/index', array(17), 'Widget')}
+        </div>
+    </div>    
+    <!--尾部开始-->
+	<div class="footer_wrap">
+		<div id="footer">
+			<div class="footercon">	
+                <ul class="help_list clearfix">
+                    <li class="item">
+                        <h3>选好课</h3>
+                        <a href="{:u('post_cate/index',array('id'=>2))}">什么值得买</a>
+                        <a href="{:u('post_cate/index',array('id'=>4))}">海外淘购</a>
+                        <a href="{:u('mall/index')}">返利商家</a>
+                        <a href="{:u('post/submit')}">我要爆料</a>
+                    </li>
+                    <li class="item">
+                        <h3>获取帮助</h3>
+                        <a href="__ROOT__/faq.html">常见问题</a>
+                        <a href="__ROOT__/fanli.html">商城返利</a>
+                        <a href="__ROOT__/weixin.html">微信二维码</a>
+                    </li>
+                    <li class="toplogo item"><a href="__ROOT__/" class=""><img class="fl" src="__LOGO__"/></a></li>
+                    <li class="item">
+                        <h3>关于网站</h3>
+                        <a href="__ROOT__/about.html">关于我们</a>
+                        <a href="__ROOT__/contact.html">联系我们</a>
+                        <a href="__ROOT__/friends.html">合作伙伴</a>
+                        <a href="__ROOT__/flink.html">友情链接</a>
+                        <a href="__ROOT__/partner.html">商务合作</a>
+                    </li>
+                    {:R('advert/index', array(8), 'Widget')}  
+                </ul>		
+				<div class="flink">
+                <strong>友情链接：</strong>
+                    <volist name="flink_list" id="val">
+                    <a href="{$val.url}" target="_blank">{$val.name}</a>
+                    </volist>					
+                </div>                
+                <p>© copyright 2010-2013 {:C("pin_site_name")}. All rights reserved. </p>
+                <p>{:C("pin_site_icp")}{:C("pin_statistics_code")}</p>
+			</div>
+		</div>
+	</div>
+	<!--尾部结束-->
+    <div id="J_returntop" class="return_top"></div>
+    {:C('pin_cps_yqf_js')}
+<script>
+var PINER = {
+    root: "__ROOT__",
+    uid: "<?php echo $visitor['id'];?>", 
+    async_sendmail: "<?php echo $async_sendmail;?>",
+    config: {
+        wall_distance: "<?php echo C('pin_wall_distance');?>",
+        wall_spage_max: "<?php echo C('pin_wall_spage_max');?>"
+    },
+    //URL
+    url: {}
+};
+//语言项目
+var lang = {};
+<volist name=":L('js_lang')" id="val">lang.{$key} = "{$val}";</volist>
+</script>
+<load href="__STATIC__/jquery-ui/themes/base/jquery.ui.all.css"/>
+<load href="__STATIC__/jquery-ui/extend/datepicker/jquery-ui-timepicker-addon.css"/>
+	
+<pin:load type="js" href="__STATIC__/js/jquery/plugins/jquery.tools.min.js
+,__STATIC__/js/jquery/plugins/jquery.masonry.js
+,__STATIC__/js/jquery/plugins/jquery.scrollTo.min.js
+,__STATIC__/js/jquery/plugins/formvalidator.js
+,__STATIC__/js/jquery/plugins/jquery.stickyscroll.js
+,__STATIC__/js/jquery/plugins/jquery.easing.min.js
+,__STATIC__/js/jquery/plugins/jquery.artDialog.js
+,__STATIC__/js/jquery/plugins/artDialog.plugins.js
+,__STATIC__/jquery-ui/ui/jquery-ui.js
+,__STATIC__/jquery-ui/extend/datepicker/jquery-ui-sliderAccess.js
+,__STATIC__/jquery-ui/extend/datepicker/jquery-ui-timepicker-addon.js
+,__STATIC__/jquery-ui/ui/i18n/jquery.ui.datepicker-zh-CN.js
+,__STATIC__/js/fileuploader.js
+,__STATIC__/js/zhiphp.js
+,__STATIC__/js/front.js
+,__STATIC__/js/dialog.js
+,__STATIC__/js/wall.js
+,__STATIC__/js/comment.js
+,__STATIC__/js/user.js
+,__STATIC__/js/setting.js
+,__STATIC__/js/brivio.validate.js
+" />
+<!--[if lte IE 6]>
+<script src="__STATIC__/js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('div, ul, img, li, input , a,h3,span,em,i,dt,dd,button');
+    </script>
+<![endif]-->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<div id="lb_login">
+<div class="login_box clearfix">
+    <form id="J_dlogin_form" action="{:U('user/login')}" method="post">
+    <p id="J_login_fail" class="login_fail imgcheckclear">{:L('username_require')}</p>
+    <div class="dlogin_form">
+        <dl>
+            <dd>用户名：</dd>
+            <dt>
+                <input type="text" name="username" class="J_username text">
+            </dt>
+            <dd>密　码：</dd>
+            <dt class="u_passwd">
+                <input type="password" name="password" class="J_password text">
+                <!--<a href="{:U('findpwd/index')}">忘记密码？</a>-->
+            </dt>
+            <dd>&nbsp;</dd>
+            <dt class="rem">
+                <input type="checkbox" name="remember" class="checkbox" checked="">
+                两周内免登录
+            </dt>
+            <dd>&nbsp;</dd>
+            <dt>
+                <input type="submit" value="" class="login_btn">
+                <a href="{:U('user/register')}" class="register_btn"></a>
+            </dt>
+        </dl>
+    </div>
+    <div class="reg_or_weibo">
+        <div class="register_box">其他登陆方式<a href="{:U('oauth/index', array('mod'=>'qq'))}" class="login_a"></a></div>
+        <div class="l_o">
+            <a href="{:U('oauth/index', array('mod'=>'sina'))}">用微博帐号登录</a>
+            <a style="background-position: 0 -51px;" href="{:U('oauth/index', array('mod'=>'taobao'))}">用淘宝帐号登录</a>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
