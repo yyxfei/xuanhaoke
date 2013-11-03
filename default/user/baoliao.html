@@ -6,11 +6,11 @@
     <div id="main">
         <div class="contentbox clearfix menber-area"> <include file="menu" />
             <div class="menber-right">
-                <div class="menber-right-title">我的爆料</div>
+                <div class="menber-right-title">爆料投稿</div>
                 <ul class="tb">
-                    <li><a <if condition="$type eq 0">class="current"</if> href="{:u('user/baoliao',array('type'=>0))}">好课分享</a></li>
+                    <li><a <if condition="$type eq 0">class="current"</if> href="{:u('user/baoliao',array('type'=>0))}">我的爆料</a></li>
                     <li><a <if condition="$type eq 1">class="current"</if> href="{:u('user/baoliao',array('type'=>1))}">我要投稿</a></li>
-                    <li><a <if condition="$type eq 2">class="current"</if> href="{:u('user/baoliao',array('type'=>2))}">改进建议</a></li>
+                    <li><a <if condition="$type eq 2">class="current"</if> href="{:u('user/baoliao',array('type'=>2))}">我问小编</a></li>
                 </ul>
                 <div class="main-content">
                     <table style="width: 100%;" cellpadding="5" cellspacing="0" class="table_baoliao">

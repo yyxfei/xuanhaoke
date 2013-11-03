@@ -15,53 +15,54 @@
                     <div class="crumbBox clearfix">
         				<span>当前位置:</span>
                         <a href="__ROOT__/">首页 </a>&gt;&gt;&nbsp;
-                        <span class="grey">我要爆料</span>
+                        <span class="grey">爆料投稿</span>
         			</div>	
                 </div>
                 <div class="content"> </div>
-                <div class="con_title"> <span class="conName">我要爆料</span> </div>
+                <div class="con_title"> <span class="conName">爆料投稿</span> </div>
                 <div class="showinfo pageConBox">
-                    <p>Welcome！什么值得买不仅是信息发布平台，也是一个大家帮助大家的信息分享平台。什么值得买发布的绝大部分信息来自热心网友的爆料。</p>
-                    <p>如果您发现了网购的特价信息，或者想要向本站投稿，亦或者提提意见，都可以通过本页面实现。请选择正确的分类进行爆料，便于编辑进行有效筛选。您的信息越完整，将越容易被及时处理。同时，因为爆料数量较多，编辑也会尽可能的回复爆料，给您以答复。</p>
-                    <p>如果您是在其他来源看到了该信息，请务必准确填写“信息来源”项目，并避免直接抄袭他人文字。请尊重他人的劳动成果，勿进行“伪原创”。爆料平台不接受商家“王婆卖瓜、自卖自夸”，也不希望网友批量爆料某个商城的例行特价（例如易迅早市等），这会对编辑审核带来困扰，还望您的理解。</p>
-                    <p>请尽量选择好品牌、好质量、好价格的产品进行爆料，推荐理由尽量做到言简意赅。根据爆料信息来源、及时程度、特价力度、推荐理由丰富程度的不同，被成功采用的爆料会获得5-100个金币的奖励，您可以通过什么值得买的用户积分计划，换取优惠券、礼品卡或其他实物礼品。</p>
+                    <p>Welcome！选好课不仅是信息发布平台，也是一个大家帮助大家的信息分享平台。选好课发布的绝大部分信息来自热心网友的爆料。</p>
+                    <p>如果您发现了优质或劣质的教育产品，或者想要向本站投稿，亦或者提提自己的需求，想找到任何课程的靠谱信息，不妨给我们投稿爆料（谢绝商家）吧，都可以通过本页面实现。请选择正确的分类进行爆料，便于编辑进行有效筛选。您的信息越完整，将越容易被及时处理。同时，因为爆料数量较多，编辑也会尽可能的回复爆料，给您以爆料投稿答复。</p>
+                    <p>如果您是在其他来源看到了该信息，请务必准确填写“信息来源”项目，并避免直接抄袭他人文字。请尊重他人的劳动成果，勿进行“伪原创”。爆料平台不接受机构“王婆卖瓜、自卖自夸”，也不希望网友批量爆料某个机构的例行特价，这会对编辑审核带来困扰，还望您的理解。</p>
+                    <p>请尽量选择好品牌、好质量、好价格的课程进行爆料，推荐理由尽量做到言简意赅。根据爆料信息来源、及时程度、推荐理由丰富程度的不同，被成功采用的爆料会获得5-100个金币的奖励，您可以通过选好课的用户积分计划，换取优惠券、礼品卡或其他实物礼品。</p>
                 </div>
                 <form id="myForm" method="post" class="mainTableBox" action="{:u(MODULE_NAME.'/'.ACTION_NAME)}">
                     <table cellspacing="0" cellpadding="0" border="0" id="bl_table">
                         <tbody>
                             <tr height="45">
-                                <td colspan="2"><input type="radio" name="type" value="0" onclick="dodiv('speinfor')" id="item_bltp_tj" checked="checked">
-                                    <span>好课分享</span>
+                                <td colspan="2">
+                                    <input type="radio" name="type" value="0" onclick="dodiv('speinfor')" id="item_bltp_tj" checked="checked">
+                                    <span>我的爆料&nbsp;&nbsp;</span>
                                     <input type="radio" name="type" value="1" onclick="dodiv('draft')" id="item_bltp_tg"/>
-                                    <span>我要投稿</span>
+                                    <span>我要投稿&nbsp;&nbsp;</span>
                                     <input type="radio" name="type" value="2" onclick="dodiv('subbug')" id="item_bltp_bug"/>
-                                    <span>改进建议</span></td>
+                                    <span>我问小编</span></td>
                             </tr>
                             <tr class="speinfor tab_item">
                                 <td class="brokeNewsTitle">标题：</td>
-                                <td><input type="text" id="J_title" name="title" value="" style="width:460px" class="text text-empty" data-default="此处填写商品名称+价格@商城"/></td>
+                                <td><input type="text" id="J_title" name="title" value="" style="width:460px" class="text text-empty" data-default="此处填写学校+课程名称+价格"/></td>
                             </tr>
                             <tr class="speinfor tab_item">
                                 <td class="brokeNewsTitle">链接：</td>
-                                <td><input type="text" name="url" value="" style="width:460px" class="text text-empty" data-default="此处填写商品购买链接或活动地址"/>
+                                <td><input type="text" name="url" value="" style="width:460px" class="text text-empty" data-default="此处填写课程的网上链接，没有可以不填"/>
                                 </td>
                             </tr>
                             <tr class="speinfor tab_item">
-                                <td class="brokeNewsTitle">爆料信息来源：</td>
+                                <td class="brokeNewsTitle">课程性质：</td>
                                 <td>
                                     <input checked="checked" type="radio" name="orig" value="0"/>
-                                    <span>在其他网站、论坛等渠道看到了此信息</span>
+                                    <span>线上网校课程&nbsp;&nbsp;</span>
                                     <input type="radio" name="orig" value="1"/>
-                                    <span>自己在B2C商城网站上找到的此信息</span></td>
+                                    <span>线下实体课程</span></td>
                             </tr>
                             <tr class="speinfor tab_item" id="tr-item-link">
-                                <td class="brokeNewsTitle">信息来源网址：</td>
-                                <td><input class="text text-empty" style="width:460px" value="" name="web" type="text" data-default="请准确填写信息来源网址"/></td>
+                                <td class="brokeNewsTitle">所属地区：</td>
+                                <td><input class="text text-empty" style="width:460px" value="" name="web" type="text" data-default="请准确填写课程所在地区，网校课程填写网校"/></td>
                             </tr>
                             <tr class="speinfor tab_item">
                                 <td class="brokeNewsTitle">推荐理由：<br>
                                     <span class="grey">（此处请勿粘贴）</span></td>
-                                <td><textarea class="text text-empty" style="width:460px" name="info_0" data-default="请录入您的推荐理由，包括您认为值得介绍的产品特性、价格优势、下单细节等，此处请勿粘贴，请确保此处内容为原创"></textarea></td>
+                                <td><textarea class="text text-empty" style="width:460px" name="info_0" data-default="请录入您的推荐理由，包括您认为值得推荐的课程的特性、优势。此处请勿粘贴，请确保此处内容为原创。"></textarea></td>
                             </tr>
                             <tr class="draft tab_item" style="display: none;">
                                 <td class="brokeNewsTitle">投稿申请：</td>

@@ -46,8 +46,9 @@
             </div>			
 			<div class="menutop"> 
             	<ul>
-					<li><a href="{:u('mall/index')}" target="_blank">学校导航</a>|</li>
-					<li><a href="{:u('post/submit')}" target="_blank">我要爆料</a></li>
+					<!--<li><a href="{:u('mall/index')}" target="_blank">好课在哪</a>|</li> -->
+					<li><a href="{:u('post/submit')}" target="_blank">我问小编</a>|</li>
+					<li><a href="{:u('post/submit')}" target="_blank">爆料投稿</a></li>
 				</ul> 
 			</div>			
 		</div>
@@ -89,7 +90,7 @@
             <div class="nav">
                 <ul>
                     <li class="home"><a class="navicon current" href="__ROOT__/">首页</a></li>
-                    <li class="tese J_top"><a class="navicon" href="{:u('post_cate/index',array('id'=>2))}">特色推荐</a>
+                    <li class="tese J_top"><a class="navicon" href="{:u('post_cate/index',array('id'=>2))}">小编评测</a>
                         <ul class="sub_menu">
                             <volist name="tese_cate" id="val">
                             <li><a href="{:u('post_cate/index',array('id'=>$val['id']))}">{$val.name}</a></li>
