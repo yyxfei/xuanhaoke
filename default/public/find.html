@@ -37,13 +37,13 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 {:R('advert/index', array(15), 'Widget')}
 </if>
 
-<div class="picks">
+<div class="J_fixed" style="width: 250px;">
     <dl>
         <dt class="clearfix"><h3 class="fl">最新内容</h3><a class="fr" href="__ROOT__/" target="_blank">更多</a></dt>
 	<volist name="new_post_list" id="val">
         <dd class="clearfix">
-                        <a class="picks-pic fl" href=""><img style="width: 75px;height: 78px;" src="{$val._img}" /></a>
-                        <a class="picks-title fr" href="{:post_url($val)}">{$val.title}<span>&nbsp;&nbsp;￥{$val.prices}</span></a>
+                        <a class="J_fixed-pic fl" href=""><img style="width: 75px;height: 78px;" src="{$val._img}" /></a>
+                        <a class="J_fixed-title fr" href="{:post_url($val)}">{$val.title}<span>&nbsp;&nbsp;￥{$val.prices}</span></a>
                 </dd>
         </volist>
     </dl>
